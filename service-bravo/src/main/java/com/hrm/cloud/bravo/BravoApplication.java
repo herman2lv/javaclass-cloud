@@ -1,13 +1,13 @@
-package com.hrm.cloud.alpha;
+package com.hrm.cloud.bravo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CloudApplication {
+public class BravoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CloudApplication.class, args);
+        SpringApplication.run(BravoApplication.class, args);
     }
 
 }

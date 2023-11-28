@@ -22,10 +22,15 @@ repositories {
 }
 
 dependencies {
+    /* Web */
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    compileOnly 'org.projectlombok:lombok'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    /* Dev */
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    compileOnly 'org.projectlombok:lombok'
+    /* Annotation processors */
     annotationProcessor 'org.projectlombok:lombok'
+    /* Test */
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
