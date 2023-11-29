@@ -31,21 +31,8 @@ ext {
 }
 
 dependencies {
-    /* Web */
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-webflux'
-    /* Discovery */
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-    /* AWS */
-    implementation platform('software.amazon.awssdk:bom:2.21.33')
-    implementation 'software.amazon.awssdk:s3'
-    implementation 'software.amazon.awssdk:apache-client'
-    /* Dev */
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    compileOnly 'org.projectlombok:lombok'
-    /* Annotation processors */
-    annotationProcessor 'org.projectlombok:lombok'
-    /* Test */
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
