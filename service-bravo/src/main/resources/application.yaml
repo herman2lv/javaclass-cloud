@@ -1,8 +1,6 @@
-server:
-  port: 7081
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:7432/bravo
+    url: jdbc:postgresql://service-bravo-database:5432/bravo
     username: postgres
     password: root
     driver-class-name: org.postgresql.Driver
