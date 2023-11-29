@@ -17,6 +17,10 @@ services:
     build: ./service-bravo
     ports:
       - "7081:8080"
+    environment:
+      - DATABASE_PASSWORD=${SERVICE_BRAVO_DATABASE_PASSWORD}
+      - DATABASE_URL=jdbc:postgresql://service-bravo-database:5432/${SERVICE_BRAVO_DATABASE_NAME}
+      - DATABASE_USER=${SERVICE_BRAVO_DATABASE_USER}
     restart: always
     depends_on:
       - service-bravo-database
@@ -27,8 +31,9 @@ services:
     volumes:
       - service-bravo-database:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=bravo
+      - POSTGRES_PASSWORD=${SERVICE_BRAVO_DATABASE_PASSWORD}
+      - POSTGRES_DB=${SERVICE_BRAVO_DATABASE_NAME}
+      - POSTGRES_USER=${SERVICE_BRAVO_DATABASE_USER}
     restart: always
 volumes:
   service-bravo-database:
