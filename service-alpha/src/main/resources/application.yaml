@@ -8,9 +8,7 @@ eureka:
 my:
   client:
     bravo:
-      scheme: http
-      host: service-bravo
-      port: 8080
+      id: SERVICE-BRAVO
       endpoint: ping
     s3:
       url: http://localstack:4566 # Need this only because of the localhost
