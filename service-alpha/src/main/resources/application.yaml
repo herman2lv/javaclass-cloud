@@ -9,7 +9,7 @@ my:
   client:
     bravo:
       id: SERVICE-BRAVO
-      endpoint: ping
+      endpoint: bravo/ping
     s3:
       url: http://localstack:4566 # Need this only because of the localhost
       accessKey: fake_access_key  # Any value is accepted by the S3Client and by the localstack
