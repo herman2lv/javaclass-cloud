@@ -1,6 +1,10 @@
 spring:
   application:
     name: service-bravo
+  rabbitmq:
+    host: message-broker
+    username: guest
+    password: guest
   datasource:
     url: ${DATABASE_URL}
     username: ${DATABASE_USER}

@@ -27,6 +27,7 @@ services:
       - service-discovery
       - service-bravo
       - localstack
+      - message-broker
   service-bravo:
     build: ./service-bravo
     expose:

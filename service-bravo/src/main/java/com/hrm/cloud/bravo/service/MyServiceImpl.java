@@ -1,5 +1,6 @@
 package com.hrm.cloud.bravo.service;
 
+import com.hrm.cloud.bravo.client.MessagePublisher;
 import com.hrm.cloud.bravo.data.MyEntity;
 import com.hrm.cloud.bravo.data.MyRepository;
 import com.hrm.cloud.bravo.dto.MyDto;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class MyServiceImpl implements MyService {
 
+    private final MessagePublisher messagePublisher;
     private final MyRepository myRepository;
     private final MyMapper myMapper;
 
@@ -22,6 +24,7 @@ public class MyServiceImpl implements MyService {
         MyEntity myEntity = myMapper.toEntity(myDto);
         MyEntity saved = myRepository.save(myEntity);
         log.info("Service saved result: {}", saved);
+        messagePublisher.postMessage("Saved with id: " + saved.getId());
         return myMapper.toDto(saved);
     }
 

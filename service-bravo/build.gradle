@@ -30,6 +30,8 @@ ext {
 }
 
 dependencies {
+    /* Messaging */
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
     /* Web */
     implementation 'org.springframework.boot:spring-boot-starter-web'
     /* Discovery */
