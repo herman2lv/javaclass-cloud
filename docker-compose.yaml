@@ -13,7 +13,9 @@ services:
     build: ./service-alpha
     ports:
       - "7080:8080"
+      - "5555:5555"
     environment:
+      - JAVA_TOOL_OPTIONS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5555"
       - EUREKA_CLIENT_URL=${SERVICE_DISCOVERY_URL}
     restart: always
     depends_on:
