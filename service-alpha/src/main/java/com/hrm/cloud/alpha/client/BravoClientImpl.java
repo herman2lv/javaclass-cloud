@@ -2,6 +2,8 @@ package com.hrm.cloud.alpha.client;
 
 import com.hrm.cloud.alpha.config.BravoClientProperties;
 import com.hrm.cloud.alpha.dto.MyDto;
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.client.ServiceInstance;
@@ -21,6 +23,8 @@ public class BravoClientImpl implements BravoClient {
     private final LoadBalancerClient loadBalancerClient;
 
     @Override
+    @Retry(name = "MyRetry")
+    @Bulkhead(name = "MyBulkhead")
     public MyDto ping(MyDto myDto) {
         log.info("Sending request to BRAVO: {}", myDto);
 

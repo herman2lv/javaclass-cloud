@@ -1,5 +1,6 @@
 package com.hrm.cloud.alpha.client;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,7 @@ public class StorageClientImpl implements StorageClient {
 
 
     @Override
+    @CircuitBreaker(name = "MyCircuitBreaker", fallbackMethod = "fallbackUpload")
     public void upload(String key, byte[] content) {
         if (!bucketExists(bucket)) {
             createBucket(bucket);
@@ -37,6 +39,11 @@ public class StorageClientImpl implements StorageClient {
         PutObjectRequest request = PutObjectRequest.builder().bucket(bucket).key(key).build();
         s3Client.putObject(request, RequestBody.fromBytes(content));
         log.info("Uploaded to S3: {}, length: {}", key, content.length);
+    }
+
+    private void fallbackUpload(String key, byte[] content, Throwable e) {
+        log.info("Fallback upload method called with arguments: key={}, content length={}, and caught throwable: {}",
+                key, content.length, e.getMessage());
     }
 
     @Override
