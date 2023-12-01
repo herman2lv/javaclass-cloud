@@ -16,6 +16,18 @@ services:
     ports:
       - "4566:4566"
     restart: always
+  grafana:
+    image: grafana/grafana:10.2.2
+    ports:
+      - "3000:3000"
+    volumes:
+      - "grafana:/var/lib/grafana"
+  prometheus:
+    image: prom/prometheus:v2.48.0
+    ports:
+      - "9090:9090"
+    volumes:
+      - "./prometheus.yaml:/etc/prometheus/prometheus.yml" # target file must be .yml not .yaml
   service-gateway:
     build: ./service-gateway
     ports:
@@ -27,6 +39,8 @@ services:
     build: ./service-alpha
     ports:
       - "5555:5555"
+    expose:
+      - "8080"
     environment:
       - JAVA_TOOL_OPTIONS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5555"
       - EUREKA_CLIENT_URL=${SERVICE_DISCOVERY_URL}
@@ -72,3 +86,4 @@ services:
       - message-broker
 volumes:
   service-bravo-database:
+  grafana:
